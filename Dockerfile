@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7-alpine@sha256:11568bb68bd375727e468ea5995f556139ff305eed9d8ee1d04b1a4a03a6486a
 
 RUN apk add --no-cache tini
 
