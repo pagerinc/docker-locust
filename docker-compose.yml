@@ -1,0 +1,29 @@
+---
+version: '3.3'
+
+services:
+
+  default-backend:
+    image: gcr.io/google_containers/defaultbackend:1.4
+    ports:
+      - "8080:8080"
+
+  master:
+    image: pagerinc/locust:0.1.1
+    ports:
+      - "5557:5557"
+      - "5558:5558"
+      - "8089:8089"
+    environment:
+      - LOCUST_MODE=master
+    command: "locust -f /etc/locust/tasks/tasks.py --master --host='default-backend:8080'"
+    volumes:
+      - ./tasks:/etc/locust/tasks:ro
+
+  worker:
+    image: pagerinc/locust:0.1.1
+    environment:
+      - LOCUST_MODE=worker
+    command: "locust -f /etc/locust/tasks/tasks.py --slave --master-host=master"
+    volumes:
+      - ./tasks:/etc/locust/tasks:ro
