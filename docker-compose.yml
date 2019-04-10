@@ -4,12 +4,12 @@ version: '3.3'
 services:
 
   default-backend:
-    image: gcr.io/google_containers/defaultbackend:1.4
+    image: gcr.io/google_containers/defaultbackend:1.4@sha256:865b0c35e6da393b8e80b7e3799f777572399a4cff047eb02a81fa6e7a48ed4b
     ports:
       - "8080:8080"
 
   master:
-    image: pagerinc/locust:0.1.1
+    image: pagerinc/locust:0.1.1@sha256:8772eddca4a5b496d9e1963689219b5db5c0bafc23287c257f998193d74643c0
     ports:
       - "5557:5557"
       - "5558:5558"
@@ -21,7 +21,7 @@ services:
       - ./tasks:/etc/locust/tasks:ro
 
   worker:
-    image: pagerinc/locust:0.1.1
+    image: pagerinc/locust:0.1.1@sha256:8772eddca4a5b496d9e1963689219b5db5c0bafc23287c257f998193d74643c0
     environment:
       - LOCUST_MODE=worker
     command: "locust -f /etc/locust/tasks/tasks.py --slave --master-host=master"
