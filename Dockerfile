@@ -1,4 +1,4 @@
-FROM python:3.7-alpine@sha256:93b2b24b95cf74229b41237126e22420580f05f51c76de015986fbd79d8d7e42
+FROM python:3.7-alpine@sha256:d22196e0ced4a0fd44916e3ff4aea00565260f66a3d0d26f5551b8fdbd833423
 
 LABEL maintainer="Pager Platform Team <containers@pager.com>"
 
